@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leh Ladakh Motorcycle Expedition 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0d12;
+    font-family: 'Exo 2', sans-serif;
+    color: #e8dfc8;
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, #0a0d12 0%, #14202e 40%, #1a1208 100%);
+    padding: 40px 32px 28px;
+    text-align: center;
+    border-bottom: 1px solid #c8943044;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 80%, #c8201044 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 20%, #0077aa22 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 80% 10%, #c8940022 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .mountain-bg {
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 900px;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .trip-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #c89430cc;
+    color: #0a0d12;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    letter-spacing: 6px;
+    line-height: 1;
+    color: #f5ead4;
+    position: relative;
+    text-shadow: 0 0 60px #c8943055;
+  }
+
+  .hero-sub {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: #c89430;
+    text-transform: uppercase;
+    margin-top: 8px;
+    position: relative;
+  }
+
+  .bikers-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 14px;
+    position: relative;
+  }
+
+  .biker-icon { font-size: 22px; }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 24px;
+    position: relative;
+  }
+
+  .hstat { text-align: center; }
+
+  .hstat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px;
+    color: #c89430;
+    line-height: 1;
+  }
+
+  .hstat-lbl {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #8a8070;
+    text-transform: uppercase;
+    margin-top: 3px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+  }
+
+  .hstat-sep {
+    width: 1px;
+    background: #c8943033;
+    align-self: stretch;
+    margin: 6px 0;
+  }
+
+  /* ── ROUTE STRIP ── */
+  .route-strip {
+    background: #0d1118;
+    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border-bottom: 1px solid #c8943022;
+    overflow-x: auto;
+  }
+
+  .rnode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .rnode-dot {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    border: 2px solid #c89430;
+    background: #0d1118;
+  }
+
+  .rnode-dot.start, .rnode-dot.end { background: #c89430; }
+
+  .rnode-dot.summit {
+    background: #e84040;
+    border-color: #e84040;
+    width: 13px; height: 13px;
+  }
+
+  .rnode-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #8a8070;
+    text-align: center;
+    max-width: 60px;
+    line-height: 1.2;
+  }
+
+  .rline {
+    height: 2px;
+    flex: 1;
+    min-width: 18px;
+    background: linear-gradient(90deg, #c8943055, #c89430aa, #c8943055);
+    margin-bottom: 16px;
+    flex-shrink: 0;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline { width: 100%; }
+
+  .day-card {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    border-bottom: 1px solid #c8943015;
+  }
+
+  .day-card.alt-day { background: #0d111888; }
+
+  .day-card.highlight-day .day-num-col { background: #c8943012; }
+
+  .day-num-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 0;
+    border-right: 1px solid #c8943022;
+    gap: 4px;
+  }
+
+  .day-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: #c89430;
+    line-height: 1;
+  }
+
+  .day-word {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #5a5248;
+    text-transform: uppercase;
+  }
+
+  .day-icon { margin-top: 8px; font-size: 18px; }
+
+  .day-content { padding: 18px 28px 18px 22px; }
+
+  .day-route {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1.5px;
+    color: #f0e6cc;
+    line-height: 1.2;
+  }
+
+  .day-route .arrow { color: #c89430; font-size: 18px; margin: 0 5px; }
+
+  .day-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    align-items: center;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: 14px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .tag-dist    { background: #c8943020; color: #c89430;  border: 1px solid #c8943040; }
+  .tag-stay    { background: #0077aa20; color: #60b8e8;  border: 1px solid #0077aa40; }
+  .tag-special { background: #e8404020; color: #e87070;  border: 1px solid #e8404040; }
+  .tag-pass    { background: #8040c020; color: #c090f0;  border: 1px solid #8040c040; }
+  .tag-lake    { background: #00889820; color: #60d8e8;  border: 1px solid #00889840; }
+  .tag-warn    { background: #c8943030; color: #e8b050;  border: 1px solid #c8943060; }
+
+  .day-note {
+    font-size: 12px;
+    color: #7a7268;
+    margin-top: 8px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* ── ALTERNATE OPTIONS BLOCK ── */
+  .alt-block {
+    margin-top: 12px;
+    border: 1px solid #c8943025;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .alt-header {
+    background: #c8943015;
+    padding: 6px 14px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    color: #c89430;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .alt-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-bottom: 1px solid #c8943015;
+  }
+
+  .alt-option:last-child { border-bottom: none; }
+
+  .alt-letter {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: #c89430;
+    min-width: 22px;
+  }
+
+  .alt-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #d0c8b0;
+    flex: 1;
+    line-height: 1.4;
+  }
+
+  .alt-sub {
+    font-size: 10px;
+    color: #7a7268;
+    margin-top: 2px;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .alt-km {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 12px;
+    color: #8a8070;
+    white-space: nowrap;
+  }
+
+  /* ── SUMMARY BAR ── */
+  .summary-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: linear-gradient(135deg, #0a0d12, #141c26);
+    border-top: 2px solid #c89430;
+  }
+
+  .sum-item {
+    padding: 18px;
+    text-align: center;
+    border-right: 1px solid #c8943022;
+  }
+
+  .sum-item:last-child { border-right: none; }
+
+  .sum-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    color: #c89430;
+  }
+
+  .sum-lbl {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #6a6258;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+
+  /* ── FOOTER ── */
+  .footer-note {
+    background: #080b0f;
+    padding: 14px 32px;
+    text-align: center;
+    font-size: 11px;
+    color: #504840;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-top: 1px solid #c8943015;
+  }
+
+  /* ── PRINT / PDF OPTIMISATION ── */
+  @media print {
+    body { background: #0a0d12 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .day-card { break-inside: avoid; }
+    .hero { break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<div class="hero">
+  <svg class="mountain-bg" viewBox="0 0 900 140" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="0,140 100,25 200,90 340,6 500,85 620,18 730,70 840,35 900,55 900,140" fill="#c89430" opacity="0.55"/>
+    <polygon points="0,140 80,70 170,105 270,48 390,100 510,42 630,78 750,30 850,65 900,45 900,140" fill="#0a0d12" opacity="0.75"/>
+    <polygon points="450,6 468,58 432,58" fill="#ffffff" opacity="0.55"/>
+    <polygon points="620,18 636,64 604,64" fill="#ffffff" opacity="0.4"/>
+    <polygon points="200,35 212,72 188,72" fill="#ffffff" opacity="0.3"/>
+  </svg>
+
+  <div class="trip-badge">✦ Motorcycle Expedition 2026 ✦</div>
+
+  <div class="hero-title">LEH LADAKH</div>
+  <div class="hero-sub">Dehradun &nbsp;→&nbsp; Leh, Ladakh &nbsp;→&nbsp; Dehradun</div>
+
+  <div class="bikers-row">
+    <span class="biker-icon">🏍</span>
+    <span class="biker-icon">🏍</span>
+    <span class="biker-icon">🏍</span>
+    <span class="biker-icon">🏍</span>
+    <span class="biker-icon">🏍</span>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hstat">
+      <div class="hstat-val">5</div>
+      <div class="hstat-lbl">Riders</div>
+    </div>
+    <div class="hstat-sep"></div>
+    <div class="hstat">
+      <div class="hstat-val">10</div>
+      <div class="hstat-lbl">Days</div>
+    </div>
+    <div class="hstat-sep"></div>
+    <div class="hstat">
+      <div class="hstat-val">3,000</div>
+      <div class="hstat-lbl">Kilometres</div>
+    </div>
+    <div class="hstat-sep"></div>
+    <div class="hstat">
+      <div class="hstat-val">19,024</div>
+      <div class="hstat-lbl">ft · Umling La</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ ROUTE STRIP ══════════════════ -->
+<div class="route-strip">
+  <div class="rnode"><div class="rnode-dot start"></div><div class="rnode-label">Chandigarh</div></div>
+  <div class="rline"></div>
+  <div class="rnode"><div class="rnode-dot"></div><div class="rnode-label">Srinagar</div></div>
+  <div class="rline"></div>
+  <div class="rnode"><div class="rnode-dot"></div><div class="rnode-label">Leh</div></div>
+  <div class="rline"></div>
+  <div class="rnode"><div class="rnode-dot"></div><div class="rnode-label">Nubra Valley</div></div>
+  <div class="rline"></div>
+  <div class="rnode"><div class="rnode-dot"></div><div class="rnode-label">Pangong</div></div>
+  <div class="rline"></div>
+  <div class="rnode"><div class="rnode-dot"></div><div class="rnode-label">Hanle</div></div>
+  <div class="rline"></div>
+  <div class="rnode"><div class="rnode-dot summit"></div><div class="rnode-label">Umling La</div></div>
+  <div class="rline"></div>
+  <div class="rnode"><div class="rnode-dot"></div><div class="rnode-label">Tso Moriri</div></div>
+  <div class="rline"></div>
+  <div class="rnode"><div class="rnode-dot"></div><div class="rnode-label">Jispa</div></div>
+  <div class="rline"></div>
+  <div class="rnode"><div class="rnode-dot"></div><div class="rnode-label">Manali</div></div>
+  <div class="rline"></div>
+  <div class="rnode"><div class="rnode-dot end"></div><div class="rnode-label">Dehradun</div></div>
+</div>
+
+<!-- ══════════════════ TIMELINE ══════════════════ -->
+<div class="timeline">
+
+  <!-- Day 1 -->
+  <div class="day-card">
+    <div class="day-num-col">
+      <div class="day-word">Day</div>
+      <div class="day-badge">01</div>
+      <div class="day-icon">🛣️</div>
+    </div>
+    <div class="day-content">
+      <div class="day-route">Chandigarh <span class="arrow">→</span> Srinagar</div>
+      <div class="day-meta">
+        <span class="tag tag-dist">📍 550 km</span>
+        <span class="tag tag-stay">🏨 Night in Srinagar</span>
+      </div>
+      <div class="day-note">The longest stretch — NH44 through Jalandhar, Pathankot, Banihal Tunnel. Early start recommended. Dal Lake awaits at journey's end.</div>
+    </div>
+  </div>
+
+  <!-- Day 2 -->
+  <div class="day-card alt-day">
+    <div class="day-num-col">
+      <div class="day-word">Day</div>
+      <div class="day-badge">02</div>
+      <div class="day-icon">⛰️</div>
+    </div>
+    <div class="day-content">
+      <div class="day-route">Srinagar <span class="arrow">→</span> Leh</div>
+      <div class="day-meta">
+        <span class="tag tag-dist">📍 417 km</span>
+        <span class="tag tag-pass">🏔 Zoji La Pass</span>
+        <span class="tag tag-stay">🏨 Night in Leh</span>
+      </div>
+      <div class="day-note">The legendary NH1 — through Sonamarg, Zoji La (11,575 ft), Drass, Kargil, Lamayuru. One of the most dramatic day-rides on Earth.</div>
+    </div>
+  </div>
+
+  <!-- Day 3 -->
+  <div class="day-card">
+    <div class="day-num-col">
+      <div class="day-word">Day</div>
+      <div class="day-badge">03</div>
+      <div class="day-icon">🌅</div>
+    </div>
+    <div class="day-content">
+      <div class="day-route">Leh <span class="arrow">→</span> Nubra Valley</div>
+      <div class="day-meta">
+        <span class="tag tag-dist">📍 317 km</span>
+        <span class="tag tag-pass">🏔 Khardung La</span>
+        <span class="tag tag-special">⚔ Visit Siachen Base</span>
+        <span class="tag tag-stay">🏨 Diskit</span>
+      </div>
+      <div class="day-note">Conquer Khardung La (17,582 ft) — world-famous high altitude pass. Descend into the surreal sand dunes of Nubra. Visit Siachen Glacier viewpoint.</div>
+    </div>
+  </div>
+
+  <!-- Day 4 -->
+  <div class="day-card alt-day">
+    <div class="day-num-col">
+      <div class="day-word">Day</div>
+      <div class="day-badge">04</div>
+      <div class="day-icon">💙</div>
+    </div>
+    <div class="day-content">
+      <div class="day-route">Diskit <span class="arrow">→</span> Pangong <span style="font-size:14px;color:#8a8070">(Merak Village)</span></div>
+      <div class="day-meta">
+        <span class="tag tag-dist">📍 181 km</span>
+        <span class="tag tag-lake">🌊 Pangong Tso</span>
+        <span class="tag tag-stay">🏕 Stay at Merak</span>
+      </div>
+      <div class="day-note">Pangong Tso — the magical shifting blue lake at 14,270 ft. Stay in the quieter Merak village away from the tourist throngs. Stars will blow your mind.</div>
+    </div>
+  </div>
+
+  <!-- Day 5 -->
+  <div class="day-card">
+    <div class="day-num-col">
+      <div class="day-word">Day</div>
+      <div class="day-badge">05</div>
+      <div class="day-icon">🌄</div>
+    </div>
+    <div class="day-content">
+      <div class="day-route">Merak <span class="arrow">→</span> Hanle <span style="font-size:14px;color:#8a8070">via Chushul</span></div>
+      <div class="day-meta">
+        <span class="tag tag-dist">📍 142 km</span>
+        <span class="tag tag-pass">🏔 Chushul Valley</span>
+        <span class="tag tag-stay">🏨 Night in Hanle</span>
+      </div>
+      <div class="day-note">Remote Chushul — the frontier village near LAC. Incredible desolate plateau riding. Hanle is home to one of the world's highest observatories.</div>
+    </div>
+  </div>
+
+  <!-- Day 6 -->
+  <div class="day-card alt-day highlight-day">
+    <div class="day-num-col">
+      <div class="day-word">Day</div>
+      <div class="day-badge" style="color:#e87070">06</div>
+      <div class="day-icon">🔺</div>
+    </div>
+    <div class="day-content">
+      <div class="day-route" style="color:#f0c0b0">Umling La Summit Day</div>
+      <div class="day-meta">
+        <span class="tag tag-dist">📍 200 km</span>
+        <span class="tag tag-special">🔺 Umling La — 19,024 ft</span>
+        <span class="tag tag-pass">⛰ Photi La</span>
+        <span class="tag tag-stay">🏨 Back to Hanle</span>
+      </div>
+      <div class="day-note">🏆 THE CROWN JEWEL — World's highest motorable road. Hanle → Photi La → Umling La and return. Ensure bikes are in top condition. Carry warm gear, oxygen, and enough fuel. An achievement of a lifetime.</div>
+    </div>
+  </div>
+
+  <!-- Day 7 -->
+  <div class="day-card">
+    <div class="day-num-col">
+      <div class="day-word">Day</div>
+      <div class="day-badge" style="color:#c090f0">07</div>
+      <div class="day-icon">🔀</div>
+    </div>
+    <div class="day-content">
+      <div class="day-route" style="color:#d0b8f0">Route to Decide on the Spot</div>
+      <div class="day-meta">
+        <span class="tag tag-warn">⚠ Depends on Mig La Conditions</span>
+        <span class="tag tag-pass">🏔 Mig La — 19,400 ft / 5,913 m</span>
+      </div>
+
+      <div class="alt-block">
+        <div class="alt-header">⚡ Options — Assess on the Day</div>
+        <div class="alt-option">
+          <div class="alt-letter">A</div>
+          <div class="alt-text">
+            Hanle → Mig La (Loma / Fukche)
+            <div class="alt-sub">If Mig La is open — remote frontier, Indus riverscape</div>
+          </div>
+          <div class="alt-km">70–80 km</div>
+        </div>
+        <div class="alt-option">
+          <div class="alt-letter">B</div>
+          <div class="alt-text">
+            Hanle → Tso Moriri via Ryul Lake + Chilling Tso
+            <div class="alt-sub">If Mig La is closed — lake hopping fallback</div>
+          </div>
+          <div class="alt-km">145 km</div>
+        </div>
+        <div class="alt-option">
+          <div class="alt-letter">C</div>
+          <div class="alt-text">
+            Hanle → Demochok → Hanle (loop)
+            <div class="alt-sub">If Mig La is closed — southernmost settlement, border territory</div>
+          </div>
+          <div class="alt-km">200 km</div>
+        </div>
+      </div>
+
+      <div class="day-note" style="margin-top:10px">Mig La (19,400 ft / 5,913 m) — assess road &amp; weather conditions at Hanle that morning before committing. Locals will have the latest intel.</div>
+    </div>
+  </div>
+
+  <!-- Day 8 -->
+  <div class="day-card alt-day">
+    <div class="day-num-col">
+      <div class="day-word">Day</div>
+      <div class="day-badge">08</div>
+      <div class="day-icon">🏞️</div>
+    </div>
+    <div class="day-content">
+      <div class="day-route">Tso Moriri <span class="arrow">→</span> Jispa</div>
+      <div class="day-meta">
+        <span class="tag tag-dist">📍 250 km</span>
+        <span class="tag tag-pass">🏔 Baralacha La</span>
+        <span class="tag tag-stay">🏨 Night at Jispa</span>
+      </div>
+      <div class="day-note">Departing Ladakh across the Baralacha La (16,040 ft). Jispa sits in the lush Bhaga Valley — a beautiful basecamp before the final descent to the plains.</div>
+    </div>
+  </div>
+
+  <!-- Day 9 -->
+  <div class="day-card">
+    <div class="day-num-col">
+      <div class="day-word">Day</div>
+      <div class="day-badge">09</div>
+      <div class="day-icon">🏔️</div>
+    </div>
+    <div class="day-content">
+      <div class="day-route">Jispa <span class="arrow">→</span> Manali / Chandigarh</div>
+      <div class="day-meta">
+        <span class="tag tag-dist">📍 92 km to Manali</span>
+        <span class="tag tag-dist">📍 357 km to Chandigarh</span>
+      </div>
+      <div class="day-note">Rohtang Pass descent into Manali (if open) — or push straight to Chandigarh via Kullu valley. Decide based on fatigue and timeline.</div>
+    </div>
+  </div>
+
+  <!-- Day 10 -->
+  <div class="day-card alt-day">
+    <div class="day-num-col">
+      <div class="day-word">Day</div>
+      <div class="day-badge">10</div>
+      <div class="day-icon">🏁</div>
+    </div>
+    <div class="day-content">
+      <div class="day-route">Chandigarh <span class="arrow">→</span> Dehradun</div>
+      <div class="day-meta">
+        <span class="tag tag-dist">📍 170 km</span>
+        <span class="tag tag-stay">🏁 Journey Complete</span>
+      </div>
+      <div class="day-note">The final victory lap home. Time to decompress, relive every pass, every sunset, every cold dawn — and start planning the next one.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════ SUMMARY BAR ══════════════════ -->
+<div class="summary-bar">
+  <div class="sum-item">
+    <div class="sum-val">~3,000</div>
+    <div class="sum-lbl">Total KM</div>
+  </div>
+  <div class="sum-item">
+    <div class="sum-val">19,400</div>
+    <div class="sum-lbl">Mig La (ft)</div>
+  </div>
+  <div class="sum-item">
+    <div class="sum-val">10–11</div>
+    <div class="sum-lbl">Days</div>
+  </div>
+  <div class="sum-item">
+    <div class="sum-val">∞</div>
+    <div class="sum-lbl">Memories</div>
+  </div>
+</div>
+
+<div class="footer-note">
+  5 Riders &nbsp;·&nbsp; 5 Machines &nbsp;·&nbsp; One Legendary Road &nbsp;·&nbsp; Ride Safe &nbsp;·&nbsp; Ride Free
+</div>
+
+</body>
+</html>
