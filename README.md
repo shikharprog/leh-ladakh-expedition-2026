@@ -30,7 +30,7 @@ Hanle → Umling La → Tso Moriri → Jispa → Manali → Dehradun
 - **Tso Moriri** — remote high-altitude lake
 
 ## 🔗 View Itinerary
-👉 [Open Live Itinerary](https://yourusername.github.io/leh-ladakh-2026)
+👉 [Open Live Itinerary](https://shikharprog.github.io/leh-ladakh-2026)
 
 ---
 *Ride Safe · Ride Free*
