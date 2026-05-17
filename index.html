@@ -2,24 +2,30 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#0a0d12">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Leh Ladakh Motorcycle Expedition 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html { scroll-behavior: smooth; }
 
   body {
     background: #0a0d12;
     font-family: 'Exo 2', sans-serif;
     color: #e8dfc8;
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
   /* ── HERO ── */
   .hero {
     background: linear-gradient(160deg, #0a0d12 0%, #14202e 40%, #1a1208 100%);
-    padding: 40px 32px 28px;
+    padding: 36px 20px 24px;
     text-align: center;
     border-bottom: 1px solid #c8943044;
     position: relative;
@@ -42,7 +48,6 @@
     bottom: 0; left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width: 900px;
     opacity: 0.3;
     pointer-events: none;
   }
@@ -50,24 +55,24 @@
   .trip-badge {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     background: #c89430cc;
     color: #0a0d12;
     font-family: 'Rajdhani', sans-serif;
     font-weight: 700;
-    font-size: 12px;
-    letter-spacing: 2.5px;
+    font-size: 11px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    padding: 6px 18px;
+    padding: 5px 14px;
     border-radius: 20px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     position: relative;
   }
 
   .hero-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 72px;
-    letter-spacing: 6px;
+    font-size: clamp(48px, 14vw, 80px);
+    letter-spacing: clamp(3px, 1.5vw, 8px);
     line-height: 1;
     color: #f5ead4;
     position: relative;
@@ -77,67 +82,87 @@
   .hero-sub {
     font-family: 'Rajdhani', sans-serif;
     font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 4px;
+    font-size: clamp(10px, 2.8vw, 14px);
+    letter-spacing: clamp(1px, 1vw, 4px);
     color: #c89430;
     text-transform: uppercase;
     margin-top: 8px;
     position: relative;
+    line-height: 1.5;
   }
 
   .bikers-row {
     display: flex;
     justify-content: center;
-    gap: 12px;
-    margin-top: 14px;
+    gap: 10px;
+    margin-top: 12px;
     position: relative;
   }
 
-  .biker-icon { font-size: 22px; }
+  .biker-icon { font-size: 20px; }
 
   .hero-stats {
     display: flex;
     justify-content: center;
-    gap: 40px;
-    margin-top: 24px;
+    gap: 0;
+    margin-top: 20px;
     position: relative;
+    border: 1px solid #c8943025;
+    border-radius: 12px;
+    overflow: hidden;
   }
 
-  .hstat { text-align: center; }
+  .hstat {
+    text-align: center;
+    flex: 1;
+    padding: 12px 6px;
+    border-right: 1px solid #c8943025;
+  }
+
+  .hstat:last-child { border-right: none; }
 
   .hstat-val {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 34px;
+    font-size: clamp(22px, 6vw, 32px);
     color: #c89430;
     line-height: 1;
   }
 
   .hstat-lbl {
-    font-size: 10px;
-    letter-spacing: 1.5px;
+    font-size: 9px;
+    letter-spacing: 0.5px;
     color: #8a8070;
     text-transform: uppercase;
     margin-top: 3px;
     font-family: 'Rajdhani', sans-serif;
     font-weight: 600;
-  }
-
-  .hstat-sep {
-    width: 1px;
-    background: #c8943033;
-    align-self: stretch;
-    margin: 6px 0;
+    line-height: 1.3;
   }
 
   /* ── ROUTE STRIP ── */
   .route-strip {
     background: #0d1118;
-    padding: 16px 28px;
+    padding: 14px 16px;
     display: flex;
     align-items: center;
     gap: 0;
     border-bottom: 1px solid #c8943022;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .route-strip::-webkit-scrollbar { display: none; }
+
+  .route-scroll-hint {
+    text-align: center;
+    font-size: 9px;
+    color: #5a5248;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 1px;
+    padding: 4px 0 6px;
+    background: #0d1118;
+    border-bottom: 1px solid #c8943015;
   }
 
   .rnode {
@@ -149,7 +174,7 @@
   }
 
   .rnode-dot {
-    width: 11px; height: 11px;
+    width: 10px; height: 10px;
     border-radius: 50%;
     border: 2px solid #c89430;
     background: #0d1118;
@@ -160,26 +185,25 @@
   .rnode-dot.summit {
     background: #e84040;
     border-color: #e84040;
-    width: 13px; height: 13px;
+    width: 12px; height: 12px;
   }
 
   .rnode-label {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 600;
-    letter-spacing: 0.5px;
     color: #8a8070;
     text-align: center;
-    max-width: 60px;
+    max-width: 52px;
     line-height: 1.2;
   }
 
   .rline {
     height: 2px;
     flex: 1;
-    min-width: 18px;
+    min-width: 14px;
     background: linear-gradient(90deg, #c8943055, #c89430aa, #c8943055);
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     flex-shrink: 0;
   }
 
@@ -188,12 +212,13 @@
 
   .day-card {
     display: grid;
-    grid-template-columns: 80px 1fr;
+    grid-template-columns: 64px 1fr;
     border-bottom: 1px solid #c8943015;
+    transition: background 0.15s;
   }
 
+  .day-card:active { background: #c8943010; }
   .day-card.alt-day { background: #0d111888; }
-
   .day-card.highlight-day .day-num-col { background: #c8943012; }
 
   .day-num-col {
@@ -201,58 +226,60 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 20px 0;
+    padding: 16px 0;
     border-right: 1px solid #c8943022;
-    gap: 4px;
+    gap: 3px;
+    min-width: 64px;
   }
 
   .day-badge {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
+    font-size: 28px;
     color: #c89430;
     line-height: 1;
   }
 
   .day-word {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 9px;
+    font-size: 8px;
     letter-spacing: 2px;
     color: #5a5248;
     text-transform: uppercase;
   }
 
-  .day-icon { margin-top: 8px; font-size: 18px; }
+  .day-icon { margin-top: 6px; font-size: 16px; }
 
-  .day-content { padding: 18px 28px 18px 22px; }
+  .day-content { padding: 14px 14px 14px 14px; }
 
   .day-route {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 1.5px;
+    font-size: clamp(17px, 4.5vw, 22px);
+    letter-spacing: 1px;
     color: #f0e6cc;
-    line-height: 1.2;
+    line-height: 1.25;
   }
 
-  .day-route .arrow { color: #c89430; font-size: 18px; margin: 0 5px; }
+  .day-route .arrow { color: #c89430; margin: 0 3px; }
 
   .day-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 10px;
+    gap: 6px;
+    margin-top: 8px;
     align-items: center;
   }
 
   .tag {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    padding: 4px 12px;
-    border-radius: 14px;
+    gap: 3px;
+    padding: 3px 9px;
+    border-radius: 12px;
     font-family: 'Rajdhani', sans-serif;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
   }
 
   .tag-dist    { background: #c8943020; color: #c89430;  border: 1px solid #c8943040; }
@@ -263,7 +290,7 @@
   .tag-warn    { background: #c8943030; color: #e8b050;  border: 1px solid #c8943060; }
 
   .day-note {
-    font-size: 12px;
+    font-size: 11px;
     color: #7a7268;
     margin-top: 8px;
     line-height: 1.6;
@@ -272,7 +299,7 @@
 
   /* ── ALTERNATE OPTIONS BLOCK ── */
   .alt-block {
-    margin-top: 12px;
+    margin-top: 10px;
     border: 1px solid #c8943025;
     border-radius: 8px;
     overflow: hidden;
@@ -280,10 +307,10 @@
 
   .alt-header {
     background: #c8943015;
-    padding: 6px 14px;
+    padding: 6px 12px;
     font-family: 'Rajdhani', sans-serif;
-    font-size: 10px;
-    letter-spacing: 2.5px;
+    font-size: 9px;
+    letter-spacing: 2px;
     color: #c89430;
     text-transform: uppercase;
     font-weight: 700;
@@ -291,9 +318,9 @@
 
   .alt-option {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 14px;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 12px;
     border-bottom: 1px solid #c8943015;
   }
 
@@ -303,12 +330,13 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 18px;
     color: #c89430;
-    min-width: 22px;
+    min-width: 20px;
+    line-height: 1.1;
   }
 
   .alt-text {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     color: #d0c8b0;
     flex: 1;
@@ -325,36 +353,40 @@
 
   .alt-km {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     color: #8a8070;
     white-space: nowrap;
+    padding-top: 2px;
   }
 
   /* ── SUMMARY BAR ── */
   .summary-bar {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     background: linear-gradient(135deg, #0a0d12, #141c26);
     border-top: 2px solid #c89430;
   }
 
   .sum-item {
-    padding: 18px;
+    padding: 16px 10px;
     text-align: center;
     border-right: 1px solid #c8943022;
+    border-bottom: 1px solid #c8943022;
   }
 
-  .sum-item:last-child { border-right: none; }
+  .sum-item:nth-child(2) { border-right: none; }
+  .sum-item:nth-child(3) { border-bottom: none; }
+  .sum-item:nth-child(4) { border-right: none; border-bottom: none; }
 
   .sum-val {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 30px;
+    font-size: 28px;
     color: #c89430;
   }
 
   .sum-lbl {
-    font-size: 10px;
-    letter-spacing: 1.5px;
+    font-size: 9px;
+    letter-spacing: 1px;
     color: #6a6258;
     font-family: 'Rajdhani', sans-serif;
     font-weight: 600;
@@ -365,21 +397,57 @@
   /* ── FOOTER ── */
   .footer-note {
     background: #080b0f;
-    padding: 14px 32px;
+    padding: 14px 16px;
     text-align: center;
-    font-size: 11px;
+    font-size: 10px;
     color: #504840;
     font-family: 'Rajdhani', sans-serif;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
+    line-height: 1.8;
     border-top: 1px solid #c8943015;
   }
 
-  /* ── PRINT / PDF OPTIMISATION ── */
+  /* ── DESKTOP ENHANCEMENTS ── */
+  @media (min-width: 600px) {
+    .hero { padding: 48px 40px 32px; }
+    .hero-stats { border: none; gap: 40px; }
+    .hstat { border: none; padding: 0; flex: none; }
+    .hstat:last-child { border: none; }
+    /* restore separator dots between stats */
+    .hstat + .hstat::before {
+      display: none;
+    }
+    .hero-stats-wrap { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 24px; }
+    .hstat-sep-dot { width: 4px; height: 4px; border-radius: 50%; background: #c8943033; }
+
+    .day-card { grid-template-columns: 80px 1fr; }
+    .day-num-col { min-width: 80px; padding: 20px 0; }
+    .day-badge { font-size: 32px; }
+    .day-content { padding: 18px 28px 18px 22px; }
+    .day-route { font-size: 22px; }
+
+    .summary-bar { grid-template-columns: repeat(4, 1fr); }
+    .sum-item { border-bottom: none; }
+    .sum-item:nth-child(2) { border-right: 1px solid #c8943022; }
+    .sum-item:nth-child(3) { border-bottom: none; }
+    .sum-item:nth-child(4) { border-right: none; }
+
+    .route-scroll-hint { display: none; }
+  }
+
+  @media (min-width: 900px) {
+    .hero-title { font-size: 80px; }
+    .day-card { max-width: 900px; margin: 0 auto; }
+    .route-strip { justify-content: center; }
+    .summary-bar { max-width: 900px; margin: 0 auto; }
+    .timeline, .summary-bar, .footer-note { max-width: 900px; margin-left: auto; margin-right: auto; }
+  }
+
+  /* ── PRINT ── */
   @media print {
     body { background: #0a0d12 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .day-card { break-inside: avoid; }
-    .hero { break-after: avoid; }
   }
 </style>
 </head>
@@ -396,7 +464,6 @@
   </svg>
 
   <div class="trip-badge">✦ Motorcycle Expedition 2026 ✦</div>
-
   <div class="hero-title">LEH LADAKH</div>
   <div class="hero-sub">Dehradun &nbsp;→&nbsp; Leh, Ladakh &nbsp;→&nbsp; Dehradun</div>
 
@@ -413,25 +480,23 @@
       <div class="hstat-val">5</div>
       <div class="hstat-lbl">Riders</div>
     </div>
-    <div class="hstat-sep"></div>
     <div class="hstat">
       <div class="hstat-val">10</div>
       <div class="hstat-lbl">Days</div>
     </div>
-    <div class="hstat-sep"></div>
     <div class="hstat">
       <div class="hstat-val">3,000</div>
-      <div class="hstat-lbl">Kilometres</div>
+      <div class="hstat-lbl">KM</div>
     </div>
-    <div class="hstat-sep"></div>
     <div class="hstat">
       <div class="hstat-val">19,024</div>
-      <div class="hstat-lbl">ft · Umling La</div>
+      <div class="hstat-lbl">ft Peak</div>
     </div>
   </div>
 </div>
 
 <!-- ══════════════════ ROUTE STRIP ══════════════════ -->
+<div class="route-scroll-hint">← scroll to see full route →</div>
 <div class="route-strip">
   <div class="rnode"><div class="rnode-dot start"></div><div class="rnode-label">Chandigarh</div></div>
   <div class="rline"></div>
@@ -521,7 +586,7 @@
       <div class="day-icon">💙</div>
     </div>
     <div class="day-content">
-      <div class="day-route">Diskit <span class="arrow">→</span> Pangong <span style="font-size:14px;color:#8a8070">(Merak Village)</span></div>
+      <div class="day-route">Diskit <span class="arrow">→</span> Pangong</div>
       <div class="day-meta">
         <span class="tag tag-dist">📍 181 km</span>
         <span class="tag tag-lake">🌊 Pangong Tso</span>
@@ -539,7 +604,7 @@
       <div class="day-icon">🌄</div>
     </div>
     <div class="day-content">
-      <div class="day-route">Merak <span class="arrow">→</span> Hanle <span style="font-size:14px;color:#8a8070">via Chushul</span></div>
+      <div class="day-route">Merak <span class="arrow">→</span> Hanle</div>
       <div class="day-meta">
         <span class="tag tag-dist">📍 142 km</span>
         <span class="tag tag-pass">🏔 Chushul Valley</span>
@@ -581,7 +646,6 @@
         <span class="tag tag-warn">⚠ Depends on Mig La Conditions</span>
         <span class="tag tag-pass">🏔 Mig La — 19,400 ft / 5,913 m</span>
       </div>
-
       <div class="alt-block">
         <div class="alt-header">⚡ Options — Assess on the Day</div>
         <div class="alt-option">
@@ -609,7 +673,6 @@
           <div class="alt-km">200 km</div>
         </div>
       </div>
-
       <div class="day-note" style="margin-top:10px">Mig La (19,400 ft / 5,913 m) — assess road &amp; weather conditions at Hanle that morning before committing. Locals will have the latest intel.</div>
     </div>
   </div>
@@ -640,7 +703,7 @@
       <div class="day-icon">🏔️</div>
     </div>
     <div class="day-content">
-      <div class="day-route">Jispa <span class="arrow">→</span> Manali / Chandigarh</div>
+      <div class="day-route">Jispa <span class="arrow">→</span> Manali</div>
       <div class="day-meta">
         <span class="tag tag-dist">📍 92 km to Manali</span>
         <span class="tag tag-dist">📍 357 km to Chandigarh</span>
@@ -689,7 +752,7 @@
 </div>
 
 <div class="footer-note">
-  5 Riders &nbsp;·&nbsp; 5 Machines &nbsp;·&nbsp; One Legendary Road &nbsp;·&nbsp; Ride Safe &nbsp;·&nbsp; Ride Free
+  5 Riders · 5 Machines<br>One Legendary Road<br>Ride Safe · Ride Free
 </div>
 
 </body>
