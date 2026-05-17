@@ -28,9 +28,10 @@ Hanle → Umling La → Tso Moriri → Jispa → Manali → Dehradun
 - **Umling La** (19,024 ft) — world's highest motorable road ✅
 - **Mig La** (19,400 ft) — to be decided on the spot 🎲
 - **Tso Moriri** — remote high-altitude lake
+https://shikharprog.github.io/leh-ladakh-expedition-2026/
 
 ## 🔗 View Itinerary
-👉 [Open Live Itinerary](https://shikharprog.github.io/leh-ladakh-2026)
+👉 [Open Live Itinerary](https://shikharprog.github.io/leh-ladakh-expedition-2026/)
 
 ---
 *Ride Safe · Ride Free*
